@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head><title>{{ post.title }}</title></head>
+<body>
+  <h1>{{ post.title }}</h1>
+  <p><strong>Autor:</strong> {{ post.author }} — {{ post.published_at|date:"d.m.Y" }}</p>
+  <hr>
+  <p>{{ post.content }}</p>
+  <a href="{% url 'post-list' %}">← Powrót</a>
+</body>
+</html>
