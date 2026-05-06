@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Statystyki użytkowników</title>
+  <style>
+    body { font-family: sans-serif; max-width: 900px; margin: 2rem auto; padding: 0 1rem; }
+    .error { color: #c00; background: #fee; padding: .75rem 1rem; border-radius: 4px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+    th, td { padding: .6rem .9rem; text-align: left; border-bottom: 1px solid #ddd; }
+    th { background: #f5f5f5; font-weight: 600; }
+    tr:hover td { background: #fafafa; }
+    .badge { display: inline-block; background: #2196F3; color: #fff;
+             border-radius: 12px; padding: 2px 10px; font-size: .85rem; }
+    a { display: inline-block; margin-top: 1.5rem; color: #2196F3; }
+  </style>
+</head>
+<body>
+  <h1>Statystyki użytkowników – JSONPlaceholder</h1>
+
+  {% if error %}
+    <p class="error">Błąd: {{ error }}</p>
+  {% else %}
+    <p>Łączna liczba postów: <strong>{{ total_posts }}</strong> &nbsp;|&nbsp;
+       Liczba użytkowników: <strong>{{ users|length }}</strong></p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Użytkownik</th>
+          <th>Email</th>
+          <th>Posty</th>
+          <th>Śr. dł. tytułu (znaki)</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for user in users %}
+        <tr>
+          <td>{{ forloop.counter }}</td>
+          <td>{{ user.name }}<br><small>@{{ user.username }}</small></td>
+          <td>{{ user.email }}</td>
+          <td><span class="badge">{{ user.post_count }}</span></td>
+          <td>{{ user.avg_title_length }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  {% endif %}
+
+  <a href="{% url 'weather' %}">← Pogoda</a>&nbsp;&nbsp;
+  <a href="{% url 'post-list' %}">← Blog</a>
+</body>
+</html>

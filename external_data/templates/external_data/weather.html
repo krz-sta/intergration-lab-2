@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Pogoda – {{ city }}</title>
+  <style>
+    body { font-family: sans-serif; max-width: 900px; margin: 2rem auto; padding: 0 1rem; }
+    .error { color: #c00; background: #fee; padding: .75rem 1rem; border-radius: 4px; }
+    .temp { font-size: 2rem; font-weight: bold; margin: 1rem 0; }
+    img { max-width: 100%; border: 1px solid #ddd; border-radius: 6px; margin-top: 1rem; }
+    a { display: inline-block; margin-top: 1.5rem; color: #2196F3; }
+  </style>
+</head>
+<body>
+  <h1>Prognoza pogody – {{ city }}</h1>
+
+  {% if error %}
+    <p class="error">Błąd: {{ error }}</p>
+  {% else %}
+    <p>Aktualna temperatura: <span class="temp">{{ current_temp }} °C</span></p>
+    <h2>Temperatura w ciągu doby</h2>
+    <img src="{% url 'weather-chart' %}" alt="Wykres temperatury 24h dla {{ city }}">
+  {% endif %}
+
+  <br>
+  <a href="{% url 'users-stats' %}">→ Statystyki użytkowników</a><br>
+  <a href="{% url 'weather-summary-api' %}">→ API: /api/weather-summary/</a><br>
+  <a href="{% url 'post-list' %}">← Powrót do bloga</a>
+</body>
+</html>
