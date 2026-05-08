@@ -57,3 +57,18 @@ jobs:
           DB_HOST: localhost
           DB_PORT: 5432
         run: python manage.py test
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: test
+
+    steps:
+      - name: Trigger Render deployment
+        run: curl "${{ secrets.RENDER_DEPLOY_HOOK }}"
+
+      - name: Wait for deployment
+        run: sleep 60
+
+      - name: Sanity check
+        run: |
+          curl --fail https://intergration-labs-2-to-5.onrender.com/
