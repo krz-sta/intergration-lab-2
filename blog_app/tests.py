@@ -5,6 +5,7 @@ from .models import Post
 
 # Create your tests here.
 
+
 class PostModelTest(TestCase):
     def setUp(self):
         self.user = User.objects.create_user(username='testuser', password='testpass')
@@ -38,4 +39,3 @@ class PostListViewTest(TestCase):
     def test_post_list_empty(self):
         response = self.client.get(reverse('post-list'))
         self.assertContains(response, 'Brak postów')
-        
