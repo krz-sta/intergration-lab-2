@@ -38,3 +38,4 @@ class PostListViewTest(TestCase):
     def test_post_list_empty(self):
         response = self.client.get(reverse('post-list'))
         self.assertContains(response, 'Brak postów')
+        
