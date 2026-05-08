@@ -18,7 +18,7 @@ class PostModelTest(TestCase):
         self.assertEqual(str(post), 'Test Post')
 
     def test_post_creation(self):
-        post = Post.objects.create(
+        Post.objects.create(
             title='Another Post',
             content='Some content',
             author=self.user,
