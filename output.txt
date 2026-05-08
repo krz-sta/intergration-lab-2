@@ -1,0 +1,17 @@
+# docker ps
+CONTAINER ID   IMAGE                          COMMAND                  CREATED         STATUS         PORTS                                         NAMES
+2dee7a8971a8   intergration-lab-2-and-3-web   "python manage.py ru…"   8 seconds ago   Up 6 seconds   0.0.0.0:8000->8000/tcp, [::]:8000->8000/tcp   intergration-lab-2-and-3-web-1
+adbe9d7f4cb6   postgres:16-alpine             "docker-entrypoint.s…"   8 seconds ago   Up 7 seconds   5432/tcp                                      intergration-lab-2-and-3-db-1
+
+# docker-compose logs -f web
+web-1  | Watching for file changes with StatReloader
+
+# docker-compose exec web bash
+root@2dee7a8971a8:/app# python --version
+Python 3.12.13
+root@2dee7a8971a8:/app# 
+
+# docker stats --no-stream
+CONTAINER ID   NAME                             CPU %     MEM USAGE / LIMIT    MEM %     NET I/O           BLOCK I/O         PIDS
+2dee7a8971a8   intergration-lab-2-and-3-web-1   1.56%     167.1MiB / 7.75GiB   2.11%     5.23kB / 2.04kB   87.5MB / 1.96MB   10
+adbe9d7f4cb6   intergration-lab-2-and-3-db-1    0.00%     47.04MiB / 7.75GiB   0.59%     3.74kB / 3.66kB   31.6MB / 991kB    6
